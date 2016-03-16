@@ -1,0 +1,219 @@
+RESULT: UNSAFE
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:98:23-36: Error: Liquid Type Mismatch
+ 
+ 98 | prop_size  = lAssert (length l3 == 3)
+                            ^^^^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : GHC.Types.Bool | VV == ?a}
+  
+   not a subtype of Required type
+     VV : {VV : GHC.Types.Bool | Prop VV}
+  
+   In Context
+     ?c := {?c : GHC.Types.Int | ?c == (3 : int)}
+
+     ?b := {?b : GHC.Types.Int | ?b >= 0}
+
+     ?a := {?a : GHC.Types.Bool | Prop ?a <=> ?b == ?c}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:122:15-21: Error: Liquid Type Mismatch
+ 
+ 122 | empty = fixme "empty"
+                     ^^^^^^^
+ 
+   Inferred type
+     VV : {VV : [GHC.Types.Char] | VV == ?b
+                                   && len VV >= 0}
+  
+   not a subtype of Required type
+     VV : {VV : [GHC.Types.Char] | false}
+  
+   In Context
+     ?b := {?b : [GHC.Types.Char] | ?b ~~ ?a
+                                    && len ?b == strLen ?a
+                                    && len ?b >= 0}
+
+     ?a := {?a : GHC.Prim.Addr# | ?a ~~ "empty"
+                                  && strLen ?a == 5}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:125:18-22: Error: Liquid Type Mismatch
+ 
+ 125 | add x xs = fixme "add"
+                        ^^^^^
+ 
+   Inferred type
+     VV : {VV : [GHC.Types.Char] | VV == ?b
+                                   && len VV >= 0}
+  
+   not a subtype of Required type
+     VV : {VV : [GHC.Types.Char] | false}
+  
+   In Context
+     ?b := {?b : [GHC.Types.Char] | ?b ~~ ?a
+                                    && len ?b == strLen ?a
+                                    && len ?b >= 0}
+
+     ?a := {?a : GHC.Prim.Addr# | ?a ~~ "add"
+                                  && strLen ?a == 3}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:128:21-31: Error: Liquid Type Mismatch
+ 
+ 128 | singleton x = fixme "singleton"
+                           ^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : [GHC.Types.Char] | VV == ?b
+                                   && len VV >= 0}
+  
+   not a subtype of Required type
+     VV : {VV : [GHC.Types.Char] | false}
+  
+   In Context
+     ?b := {?b : [GHC.Types.Char] | ?b ~~ ?a
+                                    && len ?b == strLen ?a
+                                    && len ?b >= 0}
+
+     ?a := {?a : GHC.Prim.Addr# | ?a ~~ "singleton"
+                                  && strLen ?a == 9}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:140:19-29: Error: Liquid Type Mismatch
+ 
+ 140 | replicate = fixme "replicate"
+                         ^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : [GHC.Types.Char] | VV == ?a
+                                   && len VV >= 0}
+  
+   not a subtype of Required type
+     VV : {VV : [GHC.Types.Char] | false}
+  
+   In Context
+     ?b := {?b : GHC.Prim.Addr# | ?b ~~ "replicate"
+                                  && strLen ?b == 9}
+
+     ?a := {?a : [GHC.Types.Char] | ?a ~~ ?b
+                                    && len ?a == strLen ?b
+                                    && len ?a >= 0}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:147:31-57: Error: Liquid Type Mismatch
+ 
+ 147 | prop_replicate n x = lAssert (n == length (replicate n x))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : GHC.Types.Bool | VV == ?b}
+  
+   not a subtype of Required type
+     VV : {VV : GHC.Types.Bool | Prop VV}
+  
+   In Context
+     n := {n : GHC.Types.Int | n >= 0}
+
+     ?b := {?b : GHC.Types.Bool | Prop ?b <=> n == ?a}
+
+     ?a := {?a : GHC.Types.Int | ?a >= 0}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:162:26-55: Error: Liquid Type Mismatch
+ 
+ 162 | prop_map f xs = lAssert (length xs == length (map f xs))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : GHC.Types.Bool | VV == ?b}
+  
+   not a subtype of Required type
+     VV : {VV : GHC.Types.Bool | Prop VV}
+  
+   In Context
+     ?c := {?c : GHC.Types.Int | ?c >= 0}
+
+     ?b := {?b : GHC.Types.Bool | Prop ?b <=> ?c == ?a}
+
+     ?a := {?a : GHC.Types.Int | ?a >= 0}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:174:28-63: Error: Liquid Type Mismatch
+ 
+ 174 | foldr1 op Emp        = die "Cannot call foldr1 with empty list"
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : [GHC.Types.Char] | VV == ?b
+                                   && len VV >= 0}
+  
+   not a subtype of Required type
+     VV : {VV : [GHC.Types.Char] | false}
+  
+   In Context
+     ?b := {?b : [GHC.Types.Char] | ?b ~~ ?a
+                                    && len ?b == strLen ?a
+                                    && len ?b >= 0}
+
+     ?a := {?a : GHC.Prim.Addr# | ?a ~~ "Cannot call foldr1 with empty list"
+                                  && strLen ?a == 34}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:193:40-60: Error: Liquid Type Mismatch
+ 
+ 193 | zipWith f _          _          = die  "Bad call to zipWith"
+                                              ^^^^^^^^^^^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : [GHC.Types.Char] | VV == ?b
+                                   && len VV >= 0}
+  
+   not a subtype of Required type
+     VV : {VV : [GHC.Types.Char] | false}
+  
+   In Context
+     ?b := {?b : [GHC.Types.Char] | ?b ~~ ?a
+                                    && len ?b == strLen ?a
+                                    && len ?b >= 0}
+
+     ?a := {?a : GHC.Prim.Addr# | ?a ~~ "Bad call to zipWith"
+                                  && strLen ?a == 19}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:196:28-50: Error: Liquid Type Mismatch
+ 
+ 196 | prop_zipWith xs = lAssert (length xs == length x2s)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : GHC.Types.Bool | VV == ?a}
+  
+   not a subtype of Required type
+     VV : {VV : GHC.Types.Bool | Prop VV}
+  
+   In Context
+     ?c := {?c : GHC.Types.Int | ?c >= 0}
+
+     ?b := {?b : GHC.Types.Int | ?b >= 0}
+
+     ?a := {?a : GHC.Types.Bool | Prop ?a <=> ?b == ?c}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:212:16-23: Error: Liquid Type Mismatch
+ 
+ 212 | concat = fixme "concat"
+                      ^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : [GHC.Types.Char] | VV == ?b
+                                   && len VV >= 0}
+  
+   not a subtype of Required type
+     VV : {VV : [GHC.Types.Char] | false}
+  
+   In Context
+     ?b := {?b : [GHC.Types.Char] | ?b ~~ ?a
+                                    && len ?b == strLen ?a
+                                    && len ?b >= 0}
+
+     ?a := {?a : GHC.Prim.Addr# | ?a ~~ "concat"
+                                  && strLen ?a == 6}
+ /home/cse230/Desktop/Hw4/flycheck_List.lhs:214:24-47: Error: Liquid Type Mismatch
+ 
+ 214 | prop_concat = lAssert (length (concat xss) == 6)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+   Inferred type
+     VV : {VV : GHC.Types.Bool | VV == ?c}
+  
+   not a subtype of Required type
+     VV : {VV : GHC.Types.Bool | Prop VV}
+  
+   In Context
+     ?c := {?c : GHC.Types.Bool | Prop ?c <=> ?a == ?b}
+
+     ?b := {?b : GHC.Types.Int | ?b == (6 : int)}
+
+     ?a := {?a : GHC.Types.Int | ?a >= 0}

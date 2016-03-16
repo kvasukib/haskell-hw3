@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title>/home/cse230/Desktop/Hw4/flycheck_List.lhs</title>
+</head>
+<head>
+<link type='text/css' rel='stylesheet' href='liquid.css' />
+</head>
+
+<body>
+<hr>
+Put mouse over identifiers to see inferred types
+Lists
+=====
+
+
+<div class="hidden">
+\begin{code}
+<pre><span class=hs-linenum> 7: </span><span class='hs-keyword'>{-@</span> <span class='hs-conid'>LIQUID</span> <span class='hs-str'>"--short-names"</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum> 8: </span><span class='hs-keyword'>{-@</span> <span class='hs-conid'>LIQUID</span> <span class='hs-str'>"--no-termination"</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum> 9: </span>
+<span class=hs-linenum>10: </span><span class='hs-comment'>-- CHECKBINDER prop_size</span>
+<span class=hs-linenum>11: </span><span class='hs-comment'>-- CHECKBINDER empty</span>
+<span class=hs-linenum>12: </span><span class='hs-comment'>-- CHECKBINDER add</span>
+<span class=hs-linenum>13: </span><span class='hs-comment'>-- CHECKBINDER singleton</span>
+<span class=hs-linenum>14: </span><span class='hs-comment'>-- CHECKBINDER prop_replicate</span>
+<span class=hs-linenum>15: </span><span class='hs-comment'>-- CHECKBINDER prop_map</span>
+<span class=hs-linenum>16: </span><span class='hs-comment'>-- CHECKBINDER foldr1</span>
+<span class=hs-linenum>17: </span><span class='hs-comment'>-- CHECKBINDER prop_zipWith</span>
+<span class=hs-linenum>18: </span><span class='hs-comment'>-- CHECKBINDER prop_concat</span>
+<span class=hs-linenum>19: </span> 
+<span class=hs-linenum>20: </span>
+<span class=hs-linenum>21: </span><span class='hs-keyword'>module</span> <span class='hs-conid'>List</span> <span class='hs-layout'>(</span> <span class='hs-conid'>List</span>
+<span class=hs-linenum>22: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>empty</span>
+<span class=hs-linenum>23: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>add</span>
+<span class=hs-linenum>24: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>singleton</span>
+<span class=hs-linenum>25: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>map</span>
+<span class=hs-linenum>26: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>replicate</span>
+<span class=hs-linenum>27: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>foldr</span>
+<span class=hs-linenum>28: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>foldr1</span>
+<span class=hs-linenum>29: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>zipWith</span>
+<span class=hs-linenum>30: </span>            <span class='hs-layout'>,</span> <span class='hs-varid'>concat</span>
+<span class=hs-linenum>31: </span>            <span class='hs-layout'>)</span> <span class='hs-keyword'>where</span>
+<span class=hs-linenum>32: </span>
+<span class=hs-linenum>33: </span><span class='hs-keyword'>import</span> <span class='hs-conid'>Assert</span>
+<span class=hs-linenum>34: </span><span class='hs-keyword'>import</span> <span class='hs-conid'>Prelude</span> <span class='hs-varid'>hiding</span> <span class='hs-layout'>(</span><span class='hs-varid'>length</span><span class='hs-layout'>,</span> <span class='hs-varid'>replicate</span><span class='hs-layout'>,</span> <span class='hs-varid'>foldr</span><span class='hs-layout'>,</span> <span class='hs-varid'>foldr1</span><span class='hs-layout'>,</span> <span class='hs-varid'>map</span><span class='hs-layout'>,</span> <span class='hs-varid'>concat</span><span class='hs-layout'>,</span> <span class='hs-varid'>zipWith</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>35: </span>
+<span class=hs-linenum>36: </span><span class='hs-keyword'>infixr</span> <span class='hs-num'>9</span> <span class='hs-conop'>:+:</span>
+<span class=hs-linenum>37: </span>
+<span class=hs-linenum>38: </span><span class='hs-definition'>empty</span>     <span class='hs-keyglyph'>::</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span>
+<span class=hs-linenum>39: </span><span class='hs-definition'>add</span>       <span class='hs-keyglyph'>::</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span>
+<span class=hs-linenum>40: </span><span class='hs-definition'>singleton</span> <span class='hs-keyglyph'>::</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span>
+<span class=hs-linenum>41: </span><span class='hs-definition'>replicate</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span>
+<span class=hs-linenum>42: </span><span class='hs-definition'>map</span>       <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>b</span>
+<span class=hs-linenum>43: </span><span class='hs-definition'>zipWith</span>   <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>c</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>b</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>c</span>
+<span class=hs-linenum>44: </span><span class='hs-definition'>concat</span>    <span class='hs-keyglyph'>::</span> <span class='hs-conid'>List</span> <span class='hs-layout'>(</span><span class='hs-conid'>List</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span>
+</pre>\end{code}
+
+A Sized List Datatype
+---------------------
+
+Lets cook up our own `List` data type from scratch:
+
+\begin{code}
+<pre><span class=hs-linenum>53: </span><span class='hs-keyword'>data</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Emp</span>
+<span class=hs-linenum>54: </span>            <span class='hs-keyglyph'>|</span> <span class='hs-layout'>(</span><span class='hs-conop'>:+:</span><span class='hs-layout'>)</span> <span class='hs-varid'>a</span> <span class='hs-layout'>(</span><span class='hs-conid'>List</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span>
+<span class=hs-linenum>55: </span>              <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>(Eq a) =&gt; (Eq (List a))</span><span class='hs-conid'>Eq</span></a><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>(Eq (List a), Ord a) =&gt; (Ord (List a))</span><span class='hs-conid'>Ord</span></a><span class='hs-layout'>,</span> <a class=annot href="#"><span class=annottext>(Show a) =&gt; (Show (List a))</span><span class='hs-conid'>Show</span></a><span class='hs-layout'>)</span>
+</pre>\end{code}
+
+We can write a **measure** that logically represents
+the *size*, i.e. number of elements of a `List`:
+
+\begin{code}
+<pre><span class=hs-linenum>62: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>measure</span> <span class='hs-varid'>size</span>      <span class='hs-keyglyph'>::</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>63: </span>    <span class='hs-varid'>size</span> <span class='hs-layout'>(</span><span class='hs-conid'>Emp</span><span class='hs-layout'>)</span>        <span class='hs-keyglyph'>=</span> <span class='hs-num'>0</span>
+<span class=hs-linenum>64: </span>    <span class='hs-varid'>size</span> <span class='hs-layout'>(</span><span class='hs-layout'>(</span><span class='hs-conop'>:+:</span><span class='hs-layout'>)</span> <span class='hs-varid'>x</span> <span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <span class='hs-num'>1</span> <span class='hs-varop'>+</span> <span class='hs-varid'>size</span> <span class='hs-varid'>xs</span>
+<span class=hs-linenum>65: </span>  <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>66: </span>
+<span class=hs-linenum>67: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>invariant</span> <span class='hs-keyword'>{v:</span><span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyword'>| 0 &lt;= size v}</span> <span class='hs-keyword'>@-}</span>
+</pre>\end{code}
+
+It will be helpful to have a few abbreviations. First,
+lists whose size is equal to `N`
+
+\begin{code}
+<pre><span class=hs-linenum>74: </span><span class='hs-keyword'>{-@</span> <span class='hs-keyword'>type</span> <span class='hs-conid'>ListN</span> <span class='hs-varid'>a</span> <span class='hs-conid'>N</span>  <span class='hs-keyglyph'>=</span> <span class='hs-layout'>{</span><span class='hs-varid'>v</span><span class='hs-conop'>:</span><span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>|</span> <span class='hs-varid'>size</span> <span class='hs-varid'>v</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>N</span><span class='hs-layout'>}</span> <span class='hs-keyword'>@-}</span>
+</pre>\end{code}
+and then, lists whose size equals that of *another* list `Xs`:
+
+\begin{code}
+<pre><span class=hs-linenum>79: </span><span class='hs-keyword'>{-@</span> <span class='hs-keyword'>type</span> <span class='hs-conid'>ListX</span> <span class='hs-varid'>a</span> <span class='hs-conid'>Xs</span> <span class='hs-keyglyph'>=</span> <span class='hs-layout'>{</span><span class='hs-varid'>v</span><span class='hs-conop'>:</span><span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>|</span> <span class='hs-varid'>size</span> <span class='hs-varid'>v</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>size</span> <span class='hs-conid'>Xs</span><span class='hs-layout'>}</span> <span class='hs-keyword'>@-}</span>
+</pre>\end{code}
+
+(a) Computing the Length of a List
+----------------------------------
+
+Write down a *refined* type for `length`:
+
+\begin{code}
+<pre><span class=hs-linenum>88: </span><span class='hs-definition'>length</span>            <span class='hs-keyglyph'>::</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span>
+<span class=hs-linenum>89: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1606:{VV##1600 : (List {VV##1597 : a^"lq_tmp$x##1599" | $k_$35$$35$1598})^"lq_tmp$x##1602" | $k_$35$$35$1601} -&gt; {VV##1603 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[ds_d1E5:=lq_tmp$36$x$35$$35$1606]}</span><span class='hs-definition'>length</span></a> <span class='hs-conid'>Emp</span>        <span class='hs-keyglyph'>=</span> <span class='hs-num'>0</span>
+<span class=hs-linenum>90: </span><span class='hs-definition'>length</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1637 : Int | lq_tmp$x##1637 == (1 : int)}</span><span class='hs-num'>1</span></a> <a class=annot href="#"><span class=annottext>lq_tmp$x##1656:Int -&gt; lq_tmp$x##1657:Int -&gt; {lq_tmp$x##1659 : Int^"lq_tmp$x##1658" | lq_tmp$x##1659 == lq_tmp$x##1656 + lq_tmp$x##1657}</span><span class='hs-varop'>+</span></a> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1643 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[lq_tmp$36$x$35$$35$1606:=xs$35$$35$a1ti][lq_tmp$36$x$35$$35$1645:=xs$35$$35$a1ti][ds_d1E5:=xs$35$$35$a1ti][VV$35$$35$1603:=lq_tmp$36$x$35$$35$1643]}</span><span class='hs-varid'>length</span></a> <span class='hs-varid'>xs</span>
+</pre>\end{code}
+
+such that the following type checks:
+
+\begin{code}
+<pre><span class=hs-linenum>96: </span>
+<span class=hs-linenum>97: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>prop_size</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>TRUE</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>98: </span><a class=annot href="#"><span class=annottext>{v##4 : Bool | Prop v##4}</span><span class='hs-definition'>prop_size</span></a>  <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1700 : lq_tmp$x##1701:{lq_tmp$x##1698 : Bool | Prop lq_tmp$x##1698} -&gt; {lq_tmp$x##1699 : Bool | Prop lq_tmp$x##1699} | lq_tmp$x##1700 == Assert.lAssert##rlA}</span><span class='hs-varid'>lAssert</span></a> <span class='hs-layout'>(</span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1665 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[lq_tmp$36$x$35$$35$1606:=List.l3$35$$35$rXs][ds_d1E5:=List.l3$35$$35$rXs][VV$35$$35$1603:=lq_tmp$36$x$35$$35$1665][lq_tmp$36$x$35$$35$1667:=List.l3$35$$35$rXs]}</span><span class='hs-varid'>length</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-varid'>l3</span></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>lq_tmp$x##1687:{lq_tmp$x##1692 : Int^"lq_tmp$x##1691" | $k_$35$$35$1690[lq_tmp$36$x$35$$35$1686:=GHC.Classes.$36$fEqInt$35$$35$roe][VV$35$$35$1689:=lq_tmp$36$x$35$$35$1692]} -&gt; lq_tmp$x##1688:{lq_tmp$x##1692 : Int^"lq_tmp$x##1691" | $k_$35$$35$1690[lq_tmp$36$x$35$$35$1686:=GHC.Classes.$36$fEqInt$35$$35$roe][VV$35$$35$1689:=lq_tmp$36$x$35$$35$1692]} -&gt; {lq_tmp$x##1682 : Bool | Prop lq_tmp$x##1682 &lt;=&gt; lq_tmp$x##1687 == lq_tmp$x##1688}</span><span class='hs-varop'>==</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-num'>3</span></span><span class='hs-layout'>)</span>
+<span class=hs-linenum>99: </span>
+<span class=hs-linenum>100: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>l3</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>ListN</span> <span class='hs-conid'>Int</span> <span class='hs-num'>3</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>101: </span><a class=annot href="#"><span class=annottext>{v##2 : (List Int) | size v##2 == 3}</span><span class='hs-definition'>l3</span></a>     <span class='hs-keyglyph'>=</span> <span class='hs-num'>3</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>l2</span>
+<span class=hs-linenum>102: </span>
+<span class=hs-linenum>103: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>l2</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>ListN</span> <span class='hs-conid'>Int</span> <span class='hs-num'>2</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>104: </span><a class=annot href="#"><span class=annottext>{v##2 : (List Int) | size v##2 == 2}</span><span class='hs-definition'>l2</span></a>     <span class='hs-keyglyph'>=</span> <span class='hs-num'>2</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>l1</span>
+<span class=hs-linenum>105: </span>
+<span class=hs-linenum>106: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>l1</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>ListN</span> <span class='hs-conid'>Int</span> <span class='hs-num'>1</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>107: </span><a class=annot href="#"><span class=annottext>{v##2 : (List Int) | size v##2 == 1}</span><span class='hs-definition'>l1</span></a>     <span class='hs-keyglyph'>=</span> <span class='hs-num'>1</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>l0</span>
+<span class=hs-linenum>108: </span>
+<span class=hs-linenum>109: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>l0</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>ListN</span> <span class='hs-conid'>Int</span> <span class='hs-num'>0</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>110: </span><a class=annot href="#"><span class=annottext>{v##2 : (List Int) | size v##2 == 0}</span><span class='hs-definition'>l0</span></a>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Emp</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>List</span> <span class='hs-conid'>Int</span>
+</pre>\end{code}
+
+
+(b) Constructing Lists
+----------------------
+
+Fill in the implementations of the following functions so that
+LiquidHaskell verifies respect the given type signatures:
+
+\begin{code}
+<pre><span class=hs-linenum>121: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>empty</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>ListN</span> <span class='hs-varid'>a</span> <span class='hs-num'>0</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>122: </span><a class=annot href="#"><span class=annottext>{v##2 : (List a) | size v##2 == 0}</span><span class='hs-definition'>empty</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1518:{lq_tmp$x##1516 : [Char] | false} -&gt; t</span><span class='hs-varid'>fixme</span></a> <span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1508 : [Char] | lq_tmp$x##1508 ~~ lq_anf$##d1Fs
+                           &amp;&amp; len lq_tmp$x##1508 == strLen lq_anf$##d1Fs}</span><span class='hs-str'>"empty"</span></a></span>
+<span class=hs-linenum>123: </span>
+<span class=hs-linenum>124: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>add</span> <span class='hs-keyglyph'>::</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>xs</span><span class='hs-conop'>:</span><span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>ListN</span> <span class='hs-varid'>a</span> <span class='hs-keyword'>{1 + size xs}</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>125: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1469:a -&gt; lq_tmp$x##1470:(List a) -&gt; {v##2 : (List a) | size v##2 == 1 + size lq_tmp$x##1470}</span><span class='hs-definition'>add</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>(List a)</span><span class='hs-varid'>xs</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1489:{lq_tmp$x##1487 : [Char] | false} -&gt; t</span><span class='hs-varid'>fixme</span></a> <span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1479 : [Char] | lq_tmp$x##1479 ~~ lq_anf$##d1Fq
+                           &amp;&amp; len lq_tmp$x##1479 == strLen lq_anf$##d1Fq}</span><span class='hs-str'>"add"</span></a></span>
+<span class=hs-linenum>126: </span>
+<span class=hs-linenum>127: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>singleton</span> <span class='hs-keyglyph'>::</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>ListN</span> <span class='hs-varid'>a</span> <span class='hs-num'>1</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>128: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1438:a -&gt; {v##2 : (List a) | size v##2 == 1}</span><span class='hs-definition'>singleton</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1456:{lq_tmp$x##1454 : [Char] | false} -&gt; t</span><span class='hs-varid'>fixme</span></a> <span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1446 : [Char] | lq_tmp$x##1446 ~~ lq_anf$##d1Fo
+                           &amp;&amp; len lq_tmp$x##1446 == strLen lq_anf$##d1Fo}</span><span class='hs-str'>"singleton"</span></a></span>
+</pre>\end{code}
+
+(c) Replicating Values
+----------------------
+
+Fill in the code, and update the refinement type specification
+for `replicate n x` which should return a `List` `n` copies of
+the value `x`:
+
+\begin{code}
+<pre><span class=hs-linenum>139: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>replicate</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>140: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1396:Int -&gt; lq_tmp$x##1397:a -&gt; (List a)</span><span class='hs-definition'>replicate</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1414:{lq_tmp$x##1412 : [Char] | false} -&gt; t</span><span class='hs-varid'>fixme</span></a> <span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1404 : [Char] | lq_tmp$x##1404 ~~ lq_anf$##d1Fm
+                           &amp;&amp; len lq_tmp$x##1404 == strLen lq_anf$##d1Fm}</span><span class='hs-str'>"replicate"</span></a></span>
+</pre>\end{code}
+
+When you are done, the following assertion should be verified by LH.
+
+\begin{code}
+<pre><span class=hs-linenum>146: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>prop_replicate</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Nat</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>TRUE</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>147: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1704:{v##16 : Int | v##16 &gt;= 0} -&gt; lq_tmp$x##1705:a -&gt; {v##4 : Bool | Prop v##4}</span><span class='hs-definition'>prop_replicate</span></a> <a class=annot href="#"><span class=annottext>{v##16 : Int | v##16 &gt;= 0}</span><span class='hs-varid'>n</span></a> <a class=annot href="#"><span class=annottext>a</span><span class='hs-varid'>x</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1747 : lq_tmp$x##1748:{lq_tmp$x##1745 : Bool | Prop lq_tmp$x##1745} -&gt; {lq_tmp$x##1746 : Bool | Prop lq_tmp$x##1746} | lq_tmp$x##1747 == Assert.lAssert##rlA}</span><span class='hs-varid'>lAssert</span></a> <span class='hs-layout'>(</span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1729 : Bool | Prop lq_tmp$x##1729 &lt;=&gt; n##a1tm == lq_anf$##d1FE}</span><span class='hs-varid'>n</span></a></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>lq_tmp$x##1734:{lq_tmp$x##1739 : Int^"lq_tmp$x##1738" | $k_$35$$35$1737[VV$35$$35$1736:=lq_tmp$36$x$35$$35$1739][lq_tmp$36$x$35$$35$1733:=GHC.Classes.$36$fEqInt$35$$35$roe]} -&gt; lq_tmp$x##1735:{lq_tmp$x##1739 : Int^"lq_tmp$x##1738" | $k_$35$$35$1737[VV$35$$35$1736:=lq_tmp$36$x$35$$35$1739][lq_tmp$36$x$35$$35$1733:=GHC.Classes.$36$fEqInt$35$$35$roe]} -&gt; {lq_tmp$x##1729 : Bool | Prop lq_tmp$x##1729 &lt;=&gt; lq_tmp$x##1734 == lq_tmp$x##1735}</span><span class='hs-varop'>==</span></a></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1720 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[lq_tmp$36$x$35$$35$1606:=lq_anf$36$$35$$35$d1FD][ds_d1E5:=lq_anf$36$$35$$35$d1FD][VV$35$$35$1603:=lq_tmp$36$x$35$$35$1720][lq_tmp$36$x$35$$35$1722:=lq_anf$36$$35$$35$d1FD]}</span><span class='hs-varid'>length</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-layout'>(</span></span><span class=hs-error><a class=annot href="#"><span class=annottext>lq_tmp$x##1713:{VV##1714 : a^"lq_tmp$x##1716" | $k_$35$$35$1715[lq_tmp$36$x$35$$35$1712:=n$35$$35$a1tm]} -&gt; (List {VV##1714 : a^"lq_tmp$x##1716" | $k_$35$$35$1715[lq_tmp$36$x$35$$35$1712:=n$35$$35$a1tm]})</span><span class='hs-varid'>replicate</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-varid'>n</span></span><span class=hs-error> </span><span class=hs-error><span class='hs-varid'>x</span></span><span class=hs-error><span class='hs-layout'>)</span></span><span class='hs-layout'>)</span>
+</pre>\end{code}
+
+(d) Map
+-------
+
+Fix the specification for `map` such that the assertion in `prop_map`
+is verified by LH. (This will require you to first complete part (a) above.)
+
+\begin{code}
+<pre><span class=hs-linenum>157: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>map</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>b</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>158: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1334:(lq_tmp$x##1333:a -&gt; b) -&gt; lq_tmp$x##1335:(List a) -&gt; (List b)</span><span class='hs-definition'>map</span></a> <a class=annot href="#"><span class=annottext>lq_tmp$x##1333:a -&gt; b</span><span class='hs-varid'>f</span></a> <span class='hs-conid'>Emp</span>        <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Emp</span>
+<span class=hs-linenum>159: </span><span class='hs-definition'>map</span> <span class='hs-varid'>f</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1365 : lq_tmp$x##1366:a -&gt; b | lq_tmp$x##1365 == f##a1to}</span><span class='hs-varid'>f</span></a> <span class='hs-varid'>x</span> <span class='hs-conop'>:+:</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1334:(lq_tmp$x##1333:a -&gt; b) -&gt; lq_tmp$x##1335:(List a) -&gt; (List b)</span><span class='hs-varid'>map</span></a> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1382 : lq_tmp$x##1383:a -&gt; b | lq_tmp$x##1382 == f##a1to}</span><span class='hs-varid'>f</span></a> <span class='hs-varid'>xs</span>
+<span class=hs-linenum>160: </span>
+<span class=hs-linenum>161: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>prop_map</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>TRUE</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>162: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1752:(lq_tmp$x##1751:a -&gt; a) -&gt; lq_tmp$x##1753:(List a) -&gt; {v##4 : Bool | Prop v##4}</span><span class='hs-definition'>prop_map</span></a> <a class=annot href="#"><span class=annottext>lq_tmp$x##1751:a -&gt; a</span><span class='hs-varid'>f</span></a> <a class=annot href="#"><span class=annottext>(List a)</span><span class='hs-varid'>xs</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1811 : lq_tmp$x##1812:{lq_tmp$x##1809 : Bool | Prop lq_tmp$x##1809} -&gt; {lq_tmp$x##1810 : Bool | Prop lq_tmp$x##1810} | lq_tmp$x##1811 == Assert.lAssert##rlA}</span><span class='hs-varid'>lAssert</span></a> <span class='hs-layout'>(</span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1757 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[lq_tmp$36$x$35$$35$1606:=xs$35$$35$a1tt][ds_d1E5:=xs$35$$35$a1tt][VV$35$$35$1603:=lq_tmp$36$x$35$$35$1757][lq_tmp$36$x$35$$35$1759:=xs$35$$35$a1tt]}</span><span class='hs-varid'>length</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-varid'>xs</span></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>lq_tmp$x##1798:{lq_tmp$x##1803 : Int^"lq_tmp$x##1802" | $k_$35$$35$1801[lq_tmp$36$x$35$$35$1797:=GHC.Classes.$36$fEqInt$35$$35$roe][VV$35$$35$1800:=lq_tmp$36$x$35$$35$1803]} -&gt; lq_tmp$x##1799:{lq_tmp$x##1803 : Int^"lq_tmp$x##1802" | $k_$35$$35$1801[lq_tmp$36$x$35$$35$1797:=GHC.Classes.$36$fEqInt$35$$35$roe][VV$35$$35$1800:=lq_tmp$36$x$35$$35$1803]} -&gt; {lq_tmp$x##1793 : Bool | Prop lq_tmp$x##1793 &lt;=&gt; lq_tmp$x##1798 == lq_tmp$x##1799}</span><span class='hs-varop'>==</span></a></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1784 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[lq_tmp$36$x$35$$35$1786:=lq_anf$36$$35$$35$d1FH][lq_tmp$36$x$35$$35$1606:=lq_anf$36$$35$$35$d1FH][ds_d1E5:=lq_anf$36$$35$$35$d1FH][VV$35$$35$1603:=lq_tmp$36$x$35$$35$1784]}</span><span class='hs-varid'>length</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-layout'>(</span></span><span class=hs-error><a class=annot href="#"><span class=annottext>lq_tmp$x##1334:(lq_tmp$x##1333:a -&gt; b) -&gt; lq_tmp$x##1335:(List a) -&gt; (List b)</span><span class='hs-varid'>map</span></a></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1779 : lq_tmp$x##1780:a -&gt; a | lq_tmp$x##1779 == f##a1ts}</span><span class='hs-varid'>f</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-varid'>xs</span></span><span class=hs-error><span class='hs-layout'>)</span></span><span class='hs-layout'>)</span>
+</pre>\end{code}
+
+(e) Fold
+--------
+
+Fix the specification for `foldr1` so that the call to `die` is
+verified by LH:
+
+\begin{code}
+<pre><span class=hs-linenum>172: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>foldr1</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>a</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>173: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1260:(lq_tmp$x##1258:a -&gt; lq_tmp$x##1259:a -&gt; a) -&gt; lq_tmp$x##1261:(List a) -&gt; a</span><span class='hs-definition'>foldr1</span></a> <a class=annot href="#"><span class=annottext>lq_tmp$x##1258:a -&gt; lq_tmp$x##1259:a -&gt; a</span><span class='hs-varid'>op</span></a> <span class='hs-layout'>(</span><span class='hs-varid'>x</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1202:(lq_tmp$x##1200:a -&gt; lq_tmp$x##1201:b -&gt; b) -&gt; lq_tmp$x##1203:b -&gt; lq_tmp$x##1204:(List a) -&gt; b</span><span class='hs-varid'>foldr</span></a> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1328 : lq_tmp$x##1329:a -&gt; lq_tmp$x##1330:a -&gt; a | lq_tmp$x##1328 == op##a1tu}</span><span class='hs-varid'>op</span></a> <span class='hs-varid'>x</span> <span class='hs-varid'>xs</span>
+<span class=hs-linenum>174: </span><span class='hs-definition'>foldr1</span> <span class='hs-varid'>op</span> <span class='hs-conid'>Emp</span>        <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1287:{lq_tmp$x##1285 : [Char] | false} -&gt; t</span><span class='hs-varid'>die</span></a> <span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1277 : [Char] | lq_tmp$x##1277 ~~ lq_anf$##d1Fh
+                           &amp;&amp; len lq_tmp$x##1277 == strLen lq_anf$##d1Fh}</span><span class='hs-str'>"Cannot call foldr1 with empty list"</span></a></span>
+<span class=hs-linenum>175: </span>
+<span class=hs-linenum>176: </span><span class='hs-definition'>foldr</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span>
+<span class=hs-linenum>177: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1202:(lq_tmp$x##1200:a -&gt; lq_tmp$x##1201:b -&gt; b) -&gt; lq_tmp$x##1203:b -&gt; lq_tmp$x##1204:(List a) -&gt; b</span><span class='hs-definition'>foldr</span></a> <span class='hs-keyword'>_</span>  <a class=annot href="#"><span class=annottext>b</span><span class='hs-varid'>b</span></a> <span class='hs-conid'>Emp</span>        <span class='hs-keyglyph'>=</span> <span class='hs-varid'>b</span>
+<span class=hs-linenum>178: </span><span class='hs-definition'>foldr</span> <span class='hs-varid'>op</span> <span class='hs-varid'>b</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{VV : a^"lq_tmp$x##591" | VV == x##a1tB}</span><span class='hs-varid'>x</span></a> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1255 : lq_tmp$x##1256:a -&gt; lq_tmp$x##1257:b -&gt; b | lq_tmp$x##1255 == ds_d1E1}</span><span class='hs-varop'>`op`</span></a> <span class='hs-layout'>(</span><a class=annot href="#"><span class=annottext>lq_tmp$x##1202:(lq_tmp$x##1200:a -&gt; lq_tmp$x##1201:b -&gt; b) -&gt; lq_tmp$x##1203:b -&gt; lq_tmp$x##1204:(List a) -&gt; b</span><span class='hs-varid'>foldr</span></a> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1249 : lq_tmp$x##1250:a -&gt; lq_tmp$x##1251:b -&gt; b | lq_tmp$x##1249 == ds_d1E1}</span><span class='hs-varid'>op</span></a> <span class='hs-varid'>b</span> <span class='hs-varid'>xs</span><span class='hs-layout'>)</span>
+</pre>\end{code}
+
+(f) ZipWith
+-----------
+
+Fix the specification of `zipWith` so that LH verifies:
+
++ The call to `die` inside `zipWith` and
++ The assert inside `prop_zipwith`.
+
+\begin{code}
+<pre><span class=hs-linenum>190: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>zipWith</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>b</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-varid'>c</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>b</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>c</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>191: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##1023:(lq_tmp$x##1021:a -&gt; lq_tmp$x##1022:b -&gt; c) -&gt; lq_tmp$x##1024:(List a) -&gt; lq_tmp$x##1025:(List b) -&gt; (List c)</span><span class='hs-definition'>zipWith</span></a> <span class='hs-keyword'>_</span> <span class='hs-conid'>Emp</span> <span class='hs-conid'>Emp</span>               <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Emp</span>
+<span class=hs-linenum>192: </span><span class='hs-definition'>zipWith</span> <span class='hs-varid'>f</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-varid'>y</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>ys</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1157 : lq_tmp$x##1158:a -&gt; lq_tmp$x##1159:b -&gt; c | lq_tmp$x##1157 == ds_d1DW}</span><span class='hs-varid'>f</span></a> <span class='hs-varid'>x</span> <span class='hs-varid'>y</span> <span class='hs-conop'>:+:</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1023:(lq_tmp$x##1021:a -&gt; lq_tmp$x##1022:b -&gt; c) -&gt; lq_tmp$x##1024:(List a) -&gt; lq_tmp$x##1025:(List b) -&gt; (List c)</span><span class='hs-varid'>zipWith</span></a> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1184 : lq_tmp$x##1185:a -&gt; lq_tmp$x##1186:b -&gt; c | lq_tmp$x##1184 == ds_d1DW}</span><span class='hs-varid'>f</span></a> <span class='hs-varid'>xs</span> <span class='hs-varid'>ys</span>
+<span class=hs-linenum>193: </span><span class='hs-definition'>zipWith</span> <span class='hs-varid'>f</span> <span class='hs-keyword'>_</span>          <span class='hs-keyword'>_</span>          <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1129:{lq_tmp$x##1127 : [Char] | false} -&gt; t</span><span class='hs-varid'>die</span></a>  <span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1119 : [Char] | lq_tmp$x##1119 ~~ lq_anf$##d1Fa
+                           &amp;&amp; len lq_tmp$x##1119 == strLen lq_anf$##d1Fa}</span><span class='hs-str'>"Bad call to zipWith"</span></a></span>
+<span class=hs-linenum>194: </span>
+<span class=hs-linenum>195: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>prop_zipWith</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Num</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>=&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>TRUE</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>196: </span><a class=annot href="#"><span class=annottext>(Num a) =&gt; lq_tmp$x##1816:(List a) -&gt; {v##4 : Bool | Prop v##4}</span><span class='hs-definition'>prop_zipWith</span></a> <a class=annot href="#"><span class=annottext>(List a)</span><span class='hs-varid'>xs</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{lq_tmp$x##1895 : lq_tmp$x##1896:{lq_tmp$x##1893 : Bool | Prop lq_tmp$x##1893} -&gt; {lq_tmp$x##1894 : Bool | Prop lq_tmp$x##1894} | lq_tmp$x##1895 == Assert.lAssert##rlA}</span><span class='hs-varid'>lAssert</span></a> <span class='hs-layout'>(</span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1859 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[lq_tmp$36$x$35$$35$1606:=xs$35$$35$a1tJ][ds_d1E5:=xs$35$$35$a1tJ][VV$35$$35$1603:=lq_tmp$36$x$35$$35$1859][lq_tmp$36$x$35$$35$1861:=xs$35$$35$a1tJ]}</span><span class='hs-varid'>length</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-varid'>xs</span></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>lq_tmp$x##1882:{lq_tmp$x##1887 : Int^"lq_tmp$x##1886" | $k_$35$$35$1885[VV$35$$35$1884:=lq_tmp$36$x$35$$35$1887][lq_tmp$36$x$35$$35$1881:=GHC.Classes.$36$fEqInt$35$$35$roe]} -&gt; lq_tmp$x##1883:{lq_tmp$x##1887 : Int^"lq_tmp$x##1886" | $k_$35$$35$1885[VV$35$$35$1884:=lq_tmp$36$x$35$$35$1887][lq_tmp$36$x$35$$35$1881:=GHC.Classes.$36$fEqInt$35$$35$roe]} -&gt; {lq_tmp$x##1877 : Bool | Prop lq_tmp$x##1877 &lt;=&gt; lq_tmp$x##1882 == lq_tmp$x##1883}</span><span class='hs-varop'>==</span></a></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##1868 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[lq_tmp$36$x$35$$35$1606:=x2s$35$$35$a1tK][ds_d1E5:=x2s$35$$35$a1tK][VV$35$$35$1603:=lq_tmp$36$x$35$$35$1868][lq_tmp$36$x$35$$35$1870:=x2s$35$$35$a1tK]}</span><span class='hs-varid'>length</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-varid'>x2s</span></span><span class='hs-layout'>)</span>
+<span class=hs-linenum>197: </span>  <span class='hs-keyword'>where</span>
+<span class=hs-linenum>198: </span>    <a class=annot href="#"><span class=annottext>(List {VV##1848 : a^"lq_tmp$x##1850" | $k_$35$$35$1849[lq_tmp$36$x$35$$35$1839:=lq_anf$36$$35$$35$d1FK][lq_tmp$36$x$35$$35$1840:=xs$35$$35$a1tJ][lq_tmp$36$x$35$$35$1841:=xs$35$$35$a1tJ]})</span><span class='hs-varid'>x2s</span></a>         <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##1023:(lq_tmp$x##1021:a -&gt; lq_tmp$x##1022:b -&gt; c) -&gt; lq_tmp$x##1024:(List a) -&gt; lq_tmp$x##1025:(List b) -&gt; (List c)</span><span class='hs-varid'>zipWith</span></a> <a class=annot href="#"><span class=annottext>lq_tmp$x##1824:a -&gt; lq_tmp$x##1825:a -&gt; {VV : a^"lq_tmp$x##1826" | VV == lq_tmp$x##1824 + lq_tmp$x##1825}</span><span class='hs-layout'>(</span></a><span class='hs-varop'>+</span><span class='hs-layout'>)</span> <span class='hs-varid'>xs</span> <span class='hs-varid'>xs</span>
+</pre>\end{code}
+
+(g) List Concatenation *(Hard?)*
+--------------------------------
+
+Fill in the (refinement type) specification and
+implementation for the function `concat` such that
+when you are done, the assert inside `prop_concat`
+is verified by LH. Feel free to write any other code
+or specification (types, measures) that you need.
+
+\begin{code}
+<pre><span class=hs-linenum>211: </span><span class='hs-keyword'>{-@</span> <span class='hs-varid'>concat</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>List</span> <span class='hs-layout'>(</span><span class='hs-conid'>List</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>List</span> <span class='hs-varid'>a</span> <span class='hs-keyword'>@-}</span>
+<span class=hs-linenum>212: </span><a class=annot href="#"><span class=annottext>lq_tmp$x##978:(List (List a)) -&gt; (List a)</span><span class='hs-definition'>concat</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>lq_tmp$x##995:{lq_tmp$x##993 : [Char] | false} -&gt; t</span><span class='hs-varid'>fixme</span></a> <span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##985 : [Char] | lq_tmp$x##985 ~~ lq_anf$##d1F1
+                          &amp;&amp; len lq_tmp$x##985 == strLen lq_anf$##d1F1}</span><span class='hs-str'>"concat"</span></a></span>
+<span class=hs-linenum>213: </span>
+<span class=hs-linenum>214: </span><a class=annot href="#"><span class=annottext>{VV##1899 : Bool^"lq_tmp$x##1901" | $k_$35$$35$1900}</span><span class='hs-definition'>prop_concat</span></a> <span class='hs-keyglyph'>=</span> <a class=annot href="#"><span class=annottext>{lq_tmp$x##2041 : lq_tmp$x##2042:{lq_tmp$x##2039 : Bool | Prop lq_tmp$x##2039} -&gt; {lq_tmp$x##2040 : Bool | Prop lq_tmp$x##2040} | lq_tmp$x##2041 == Assert.lAssert##rlA}</span><span class='hs-varid'>lAssert</span></a> <span class='hs-layout'>(</span><span class=hs-error><a class=annot href="#"><span class=annottext>{lq_tmp$x##2006 : Int^"lq_tmp$x##1605" | $k_$35$$35$1604[lq_tmp$36$x$35$$35$1606:=lq_anf$36$$35$$35$d1FS][ds_d1E5:=lq_anf$36$$35$$35$d1FS][VV$35$$35$1603:=lq_tmp$36$x$35$$35$2006][lq_tmp$36$x$35$$35$2008:=lq_anf$36$$35$$35$d1FS]}</span><span class='hs-varid'>length</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-layout'>(</span></span><span class=hs-error><a class=annot href="#"><span class=annottext>(List {lq_tmp$x##2000 : Int^"lq_tmp$x##1999" | $k_$35$$35$1998[lq_tmp$36$x$35$$35$1996:=xss$35$$35$a1tL][VV$35$$35$1997:=lq_tmp$36$x$35$$35$2000]})</span><span class='hs-varid'>concat</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-varid'>xss</span></span><span class=hs-error><span class='hs-layout'>)</span></span><span class=hs-error> </span><span class=hs-error><a class=annot href="#"><span class=annottext>lq_tmp$x##2028:{lq_tmp$x##2033 : Int^"lq_tmp$x##2032" | $k_$35$$35$2031[lq_tmp$36$x$35$$35$2027:=GHC.Classes.$36$fEqInt$35$$35$roe][VV$35$$35$2030:=lq_tmp$36$x$35$$35$2033]} -&gt; lq_tmp$x##2029:{lq_tmp$x##2033 : Int^"lq_tmp$x##2032" | $k_$35$$35$2031[lq_tmp$36$x$35$$35$2027:=GHC.Classes.$36$fEqInt$35$$35$roe][VV$35$$35$2030:=lq_tmp$36$x$35$$35$2033]} -&gt; {lq_tmp$x##2023 : Bool | Prop lq_tmp$x##2023 &lt;=&gt; lq_tmp$x##2028 == lq_tmp$x##2029}</span><span class='hs-varop'>==</span></a></span><span class=hs-error> </span><span class=hs-error><span class='hs-num'>6</span></span><span class='hs-layout'>)</span>
+<span class=hs-linenum>215: </span>  <span class='hs-keyword'>where</span>
+<span class=hs-linenum>216: </span>    <a class=annot href="#"><span class=annottext>{lq_tmp$x##1973 : (List {lq_tmp$x##1985 : (List {lq_tmp$x##1984 : Int^"lq_tmp$x##1980" | $k_$35$$35$1979[VV$35$$35$1978:=lq_tmp$36$x$35$$35$1984][lq_tmp$36$x$35$$35$1977:=lq_anf$36$$35$$35$d1FR][lq_tmp$36$x$35$$35$1976:=List.l0$35$$35$rXv][VV$35$$35$1981:=lq_tmp$36$x$35$$35$1985]})^"lq_tmp$x##1983" | $k_$35$$35$1982[lq_tmp$36$x$35$$35$1977:=lq_anf$36$$35$$35$d1FR][lq_tmp$36$x$35$$35$1976:=List.l0$35$$35$rXv][VV$35$$35$1981:=lq_tmp$36$x$35$$35$1985]}) | size lq_tmp$x##1973 == 1 + size lq_anf$##d1FR}</span><span class='hs-varid'>xss</span></a>     <span class='hs-keyglyph'>=</span> <span class='hs-varid'>l0</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>l1</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>l2</span> <span class='hs-conop'>:+:</span> <span class='hs-varid'>l3</span> <span class='hs-conop'>:+:</span> <span class='hs-conid'>Emp</span>
+</pre>\end{code}
+
+</body>
+</html>
